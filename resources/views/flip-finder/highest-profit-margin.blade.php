@@ -6,10 +6,18 @@
 <ul>
     <form id="filter-form" method="GET" action="{{ route('flip-finder.highest-profit-margin') }}">
         <div class="row mb-3">
-            <label for="min-hourly-volume" class="form-label col-form-label col-sm-3">Minimum Hourly Volume</label>
+            <label for="min-hourly-volume" class="form-label col-form-label col-sm-3">Minimum Hourly Volume:</label>
             <div class="col-sm-2">
                 <input type="number" class="form-control" id="min-hourly-volume" name="min-hourly-volume" value="{{ request()->input('min-hourly-volume', 10) }}">
             </div>
+        </div>
+        <div class="row mb-3">
+            <label for="min-hourly-volume" class="form-label col-form-label col-sm-3">Maximum Price:</label>
+            <div class="col-sm-2">
+                <input type="number" class="form-control" id="max-item-price" name="max-item-price" value="{{ request()->input('max-item-price', 100000000) }}">
+            </div>
+        </div>
+        <div class="row mb-3 justify-content-end">
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary">Filter</button>
             </div>
