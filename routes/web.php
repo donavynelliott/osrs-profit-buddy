@@ -18,4 +18,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/items/{item_id}', [ItemController::class, 'show']);
+Route::prefix('items')->group(function () {
+    Route::get('/{item_id}', [ItemController::class, 'show'])->name('items.show');
+    Route::post('/search', [ItemController::class, 'search'])->name('items.search');
+});

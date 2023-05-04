@@ -70,4 +70,23 @@ class ItemController extends Controller
     {
         //
     }
+
+    /**
+     * Search for an item.
+     */
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $items = Item::search($search)
+            ->orderBy('name')
+            ->take(15)
+            ->get();
+
+        if ($items->count() == 1) {
+            return redirect()->route('items.show', $items->first()->item_id);
+        }
+
+        return view('items.search', compact('items'));
+    }
 }
