@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <img src="{{ $item->getOSRSItemImage() }}" class="img-fluid rounded mx-auto d-block" alt="{{ $item->name }}">
+            <img src="{{ $item->getLocalItemImage() }}" class="img-fluid rounded mx-auto d-block" alt="{{ $item->name }}">
             <p class="lead">
                 {{ $item->examine }}
             </p>

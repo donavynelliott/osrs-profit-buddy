@@ -30,19 +30,14 @@ class Item extends Model
     ];
 
     /**
-     * Get the image URL for the item.
-     * 
-     * @return string
+     * Get the image of the item from the local filesystem.
      */
-    function getOSRSItemImage()
+    public function getLocalItemImage()
     {
-        $item_url = "https://secure.runescape.com/m=itemdb_oldschool/1683109788382_obj_big.gif?id=" . $this->item_id;
+        $item_icon_path = public_path('images/items/' . $this->item_id . '.gif');
 
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $item_url);
-
-        if ($response->getStatusCode() == 200) {
-            return $item_url;
+        if (file_exists($item_icon_path)) {
+            return asset('images/items/' . $this->item_id . '.gif');
         } else {
             return "https://via.placeholder.com/36";
         }
