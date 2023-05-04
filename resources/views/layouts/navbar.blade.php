@@ -4,7 +4,7 @@
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 @include('layouts.search')
 
-                <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <!-- <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     <li>
                         <a href="#" class="nav-link text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -24,7 +24,7 @@
                             Flip Finder
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
