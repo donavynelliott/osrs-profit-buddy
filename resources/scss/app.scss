@@ -1,0 +1,20 @@
+@import "~bootstrap/scss/bootstrap";
+
+@font-face {
+    font-family: 'Bootstrap Icons';
+    src: url('../fonts/bootstrap-icons.woff2?cfe45b98') format('woff2'),
+    url('../fonts/bootstrap-icons.woff?cfe45b98') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+main {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.navbar-container {
+    padding-left: 0px!important;
+}
