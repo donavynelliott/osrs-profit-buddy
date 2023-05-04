@@ -44,6 +44,14 @@ class Item extends Model
     }
 
     /**
+     * Get a link to the wiki page for the item
+     */
+    public function getWikiLink()
+    {
+        return "https://oldschool.runescape.wiki/w/" . str_replace(' ', '_', $this->name);
+    }
+
+    /**
      * Get the indexable data array for the model.
      */
     public function toSearchableArray(): array
@@ -105,19 +113,5 @@ class Item extends Model
     public function getHourlyVolume(): int
     {
         return $this->highPriceVolume + $this->lowPriceVolume;
-    }
-
-    /**
-     * Get the top items with the highest profit margin.
-     *
-     * @param int $limit
-     * @return \Illuminate\Support\Collection
-     */
-    public static function getTopItemsWithHighestProfitMargin(int $limit = 10)
-    {
-        return static::selectRaw('*, (high - low - LEAST(FLOOR(high*0.01), 5000000)) AS profit_margin')
-        ->orderByDesc('profit_margin')
-        ->limit($limit)
-            ->get();
     }
 }

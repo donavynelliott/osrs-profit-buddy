@@ -36,7 +36,11 @@
 <script>
     //Enable datatables
     $(document).ready(function() {
-        $('#items-table').DataTable();
+        $('#items-table').DataTable({
+            "order": [
+                [2, "desc"]
+            ] // 2 is the index of the Profit column
+        });
     });
 </script>
 @endsection
