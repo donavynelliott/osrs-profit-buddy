@@ -85,15 +85,39 @@ class Item extends Model
         $margin = $this->high - $this->low;
         // Calculate whether or not the item needs to be taxed
         $tax = $this->high >= 100 ? $this->high * 0.01 : 0;
-        //Round tax down to nearest integer
-        $tax = floor($tax);
-        // Subtract the tax (limited to 5 million) from the profit
-        $profit = $margin - min($tax, 5000000);
+        //Round tax down to nearest integer limited to 5 million
+        $tax = min(floor($tax), 5000000);
+        // Subtract the tax from the profit
+        $profit = $margin - $tax;
 
         return [
             'margin' => $margin,
             'tax' => $tax,
             'profit' => $profit
         ];
+    }
+
+    /**
+     * Get the hourly volume of the item
+     * 
+     * @return int
+     */
+    public function getHourlyVolume(): int
+    {
+        return $this->highPriceVolume + $this->lowPriceVolume;
+    }
+
+    /**
+     * Get the top items with the highest profit margin.
+     *
+     * @param int $limit
+     * @return \Illuminate\Support\Collection
+     */
+    public static function getTopItemsWithHighestProfitMargin(int $limit = 10)
+    {
+        return static::selectRaw('*, (high - low - LEAST(FLOOR(high*0.01), 5000000)) AS profit_margin')
+        ->orderByDesc('profit_margin')
+        ->limit($limit)
+            ->get();
     }
 }
