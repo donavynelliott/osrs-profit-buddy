@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'RS Profit Buddy - ' . $item->name)
+@section('title', $item->name)
 
 @section('content')
 <div class="container">
