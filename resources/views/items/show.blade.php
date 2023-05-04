@@ -13,7 +13,7 @@
                 {{ $item->examine }}
             </p>
             <p>
-                <a href="{{ $item->wiki_url }}" target="_blank" rel="noopener noreferrer">View on OSRS Wiki</a>
+                <a href="{{ $item->getWikiLink() }}" target="_blank" rel="noopener noreferrer">View on OSRS Wiki</a>
             </p>
             <!-- Display the margin, profit, and tax -->
             <p>
