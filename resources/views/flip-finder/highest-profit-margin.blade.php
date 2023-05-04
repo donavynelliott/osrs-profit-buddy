@@ -4,7 +4,17 @@
 
 @section('content')
 <ul>
-
+    <form id="filter-form" method="GET" action="{{ route('flip-finder.highest-profit-margin') }}">
+        <div class="row mb-3">
+            <label for="min-hourly-volume" class="form-label col-form-label col-sm-3">Minimum Hourly Volume</label>
+            <div class="col-sm-2">
+                <input type="number" class="form-control" id="min-hourly-volume" name="min-hourly-volume" value="{{ request()->input('min-hourly-volume', 10) }}">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
     <table id="items-table">
         <thead>
             <tr>
