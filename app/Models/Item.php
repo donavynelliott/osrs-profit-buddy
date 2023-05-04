@@ -73,4 +73,27 @@ class Item extends Model
     {
         return 'item_id';
     }
+
+    /**
+     * Get the profit margin of the item
+     * 
+     * @return array
+     */
+    public function getProfitMarginWithTax(): array
+    {
+        // Calculate the difference between the high and low price
+        $margin = $this->high - $this->low;
+        // Calculate whether or not the item needs to be taxed
+        $tax = $this->high >= 100 ? $this->high * 0.01 : 0;
+        //Round tax down to nearest integer
+        $tax = floor($tax);
+        // Subtract the tax (limited to 5 million) from the profit
+        $profit = $margin - min($tax, 5000000);
+
+        return [
+            'margin' => $margin,
+            'tax' => $tax,
+            'profit' => $profit
+        ];
+    }
 }

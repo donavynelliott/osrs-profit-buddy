@@ -2,6 +2,8 @@
 
 @section('title', $item->name)
 
+<?php $marginData = $item->getProfitMarginWithTax(); ?>
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,6 +11,15 @@
             <img src="{{ $item->getLocalItemImage() }}" class="img-fluid rounded mx-auto d-block" alt="{{ $item->name }}">
             <p class="lead">
                 {{ $item->examine }}
+            </p>
+            <p>
+                <a href="{{ $item->wiki_url }}" target="_blank" rel="noopener noreferrer">View on OSRS Wiki</a>
+            </p>
+            <!-- Display the margin, profit, and tax -->
+            <p>
+                Margin: {{ number_format($marginData['margin']) }}
+                Profit: {{ number_format($marginData['profit']) }}
+                Tax: {{ number_format($marginData['tax']) }}
             </p>
         </div>
         <div class="col">
