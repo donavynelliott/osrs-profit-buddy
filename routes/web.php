@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemQueryController;
+use App\Http\Controllers\ItemSetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,11 @@ Route::prefix('flip-finder')->group(function () {
     })->name('flip-finder');
 
     Route::get('/highest-profit-margin', [ItemQueryController::class, 'getTopItemsWithHighestProfitMargin'])->name('flip-finder.highest-profit-margin');
+});
+
+Route::prefix('profit-calcs')->group(function () {
+    Route::get('/', function() {
+        return view('profit-calcs');
+    })->name('profit-calcs');
+    Route::get('/item-sets', [ItemSetController::class, 'index'])->name('profit-calcs.item-sets');
 });

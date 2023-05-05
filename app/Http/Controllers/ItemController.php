@@ -80,7 +80,7 @@ class ItemController extends Controller
 
         $items = Item::search($search)
             ->orderBy('name')
-            ->take(15)
+            ->take(25)
             ->get();
 
         if ($items->count() == 1) {
