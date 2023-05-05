@@ -24,6 +24,7 @@ export default defineConfig({
             '~bootstrap': path.resolve(new URL('./node_modules/bootstrap', import.meta.url).pathname),
             '~bootstrap-icons': path.resolve(new URL('./node_modules/bootstrap-icons', import.meta.url).pathname),
             'bootstrap-icons': path.resolve(new URL('./node_modules/bootstrap-icons', import.meta.url).pathname, 'font/fonts/bootstrap-icons.woff2?v=1.5.0'),
+            'chart.js': path.resolve(new URL('./node_modules/chart.js', import.meta.url).pathname),
         }
     }
 });

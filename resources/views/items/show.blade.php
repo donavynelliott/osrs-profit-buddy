@@ -5,7 +5,7 @@
 <?php $marginData = $item->getProfitMarginWithTax(); ?>
 
 @section('content')
-<div class="container">
+<div class="container" id="item-container">
     <div class="row">
         <div class="col">
             <img src="{{ $item->getLocalItemImage() }}" class="img-fluid rounded mx-auto d-block" alt="{{ $item->name }}">
@@ -73,4 +73,6 @@
         </div>
     </div>
 </div>
+
+@include('items.graph', ['item_id' => $item->item_id])
 @endsection
