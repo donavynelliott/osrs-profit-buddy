@@ -27,6 +27,8 @@
         <thead>
             <tr>
                 <th>Item Name</th>
+                <th>Low</th>
+                <th>High</th>
                 <th>Margin</th>
                 <th>Profit</th>
                 <th>Hourly Volume</th>
@@ -42,6 +44,8 @@
                         <a href="{{ route('items.show', $item->item_id) }}">{{ $item->name }}</a>
                     </div>
                 </td>
+                <td>{{ number_format($item->low) }}</td>
+                <td>{{ number_format($item->high) }}</td>
                 <td>{{ number_format($marginData['margin']) }}</td>
                 <td>{{ number_format($marginData['profit']) }}</td>
                 <td>{{ number_format($item->getHourlyVolume()) }}</td>
@@ -56,8 +60,8 @@
     $(document).ready(function() {
         $('#items-table').DataTable({
             "order": [
-                [2, "desc"]
-            ] // 2 is the index of the Profit column
+                [4, "desc"]
+            ] // 4 is the index of the Profit column
         });
     });
 </script>
