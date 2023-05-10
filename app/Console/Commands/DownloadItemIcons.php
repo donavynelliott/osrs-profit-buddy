@@ -38,9 +38,12 @@ class DownloadItemIcons extends Command
             mkdir(public_path('images/items'), 0755, true);
         }
 
+        if (!$magic_number = $this->getMagicNumber())
+            return $this->error('Error getting magic number');
+
         // For each item, download the icon and save to a local folder.
         foreach ($items as $index => $item) {
-            $item_url = "https://secure.runescape.com/m=itemdb_oldschool/1683109788382_obj_big.gif?id=" . $item->item_id;
+            $item_url = "https://secure.runescape.com/m=itemdb_oldschool/${magic_number}_obj_big.gif?id=" . $item->item_id;
 
             $response = $client->request('GET', $item_url);
 
@@ -56,6 +59,23 @@ class DownloadItemIcons extends Command
 
             // Pause for the specified time between downloads
             sleep($pause_time);
+        }
+    }
+
+    private function getMagicNumber()
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=2');
+
+        if ($response->getStatusCode() == 200) {
+            $response_body = json_decode($response->getBody()->getContents());
+            $icon_url = $response_body->item->icon_large;
+            $regex = "/(?<=\/)\d+(?=\_obj\_big\.gif)/";
+            preg_match($regex, $icon_url, $matches);
+            $magic_number = $matches[0];
+            return $magic_number;
+        } else {
+            return null;
         }
     }
 }
