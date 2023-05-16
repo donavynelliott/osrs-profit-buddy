@@ -15,6 +15,7 @@ export default defineConfig({
                 additionalData: `
                     @import "~bootstrap/scss/bootstrap";
                     @import "~bootstrap-icons/font/bootstrap-icons.scss";
+                    @import "resources/scss/_variables.scss";
                 `
             }
         }
