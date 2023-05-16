@@ -39,15 +39,27 @@
     </ul>
     <hr>
     <div class="dropdown">
+        @if (Auth::check())
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <strong>account</strong>
+            <strong>{{ Auth::user()->name }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li>
+                <!-- Create signout form -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Sign out</button>
+                </form>
+            </li>
         </ul>
+        @else
+        <a href="{{ route('login') }}" class="d-flex align-items-center text-white text-decoration-none">
+            <strong>Sign in</strong>
+        </a>
+        @endif
     </div>
 </div>
