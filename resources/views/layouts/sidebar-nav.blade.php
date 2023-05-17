@@ -1,17 +1,3 @@
-<!-- Navbar Links -->
-<!-- <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('flip-finder') }}" class="nav-link {{ Request::is('flip-finder*') ? 'active' : '' }}">Flip Finder</a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('profit-calcs') }}" class="nav-link {{ Request::is('profit-calcs*') ? 'active' : '' }}">Profit Calcs</a>
-        </li>
-    </ul>
-</div> -->
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -29,7 +15,7 @@
                 </a>
                 <div class="collapse" id="marginCollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('flip-finder') }}">Highest Profit Margins</a>
+                        <a class="nav-link" href="{{ route('flip-finder.highest-profit-margin') }}">Highest Profit Margins</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#calcCollapseLayouts" aria-expanded="false" aria-controls="calcCollapseLayouts">
@@ -39,7 +25,7 @@
                 </a>
                 <div class="collapse" id="calcCollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('profit-calcs') }}">Item Sets</a>
+                        <a class="nav-link" href="{{ route('profit-calcs.item-sets') }}">Item Sets</a>
                     </nav>
                 </div>
             </div>
