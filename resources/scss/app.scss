@@ -8,14 +8,100 @@
     font-style: normal;
 }
 
-main {
-    height: 100vh;
-    max-height: 100vh;
-    overflow-x: auto;
-    overflow-y: hidden;
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
 }
 
 .navbar-container {
     padding-left: 0px!important;
     padding-right: 0px!important;
+}
+
+/* Updated Datatable Theme with Custom Color Pallette */
+.datatable {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.datatable thead th {
+    background-color: $primary;
+    color: $light;
+    padding: 8px;
+    text-align: left;
+}
+
+.datatable tbody td {
+    color: $dark;
+    padding: 8px;
+}
+
+.datatable tbody tr:nth-child(even) {
+    background-color: $lighter-gray;
+}
+
+.datatable tbody tr:nth-child(odd) {
+    background-color: $light;
+}
+
+.datatable tbody tr {
+    color: $dark;
+    text-decoration: none;
+}
+
+.datatable tbody tr a {
+    color: $dark;
+    text-decoration: none;
+}
+
+.datatable tbody tr:hover {
+    background-color: $secondary;
+    cursor: pointer;
+}
+
+.datatable tbody tr:hover a {
+    color: $light;
+    /* Change link text color on hover */
+}
+
+.datatable .success {
+    background-color: $success;
+    color: $light;
+}
+
+.datatable .info {
+    background-color: $info;
+    color: $light;
+}
+
+.datatable .warning {
+    background-color: $warning;
+    color: $light;
+}
+
+.datatable .danger {
+    background-color: $danger;
+    color: $light;
+}
+
+.dataTables_filter {
+    margin-bottom: 10px;
 }

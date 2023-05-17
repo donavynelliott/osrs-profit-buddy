@@ -17,7 +17,7 @@
 
                 // Append the canvas to the row and the row to the container
                 row.appendChild(canvas);
-                document.getElementById('item-container').appendChild(row);
+                document.getElementById('graph-container').appendChild(row);
 
                 // Get the max and min prices
                 const maxHighPrice = Math.max(...highPrices);

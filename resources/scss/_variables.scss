@@ -1,0 +1,23 @@
+$primary: #8D2F5D;
+$secondary: #9D5E72;
+$success: #6D8D2F;
+$info: #2F8D61;
+$warning: #A1784E;
+$danger: #333333;
+$light: #F5F5F5;
+$dark: #333333;
+$lighter-gray: #F9F9F9;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+);
+
+$nav-pills-link-active-color: $light;
+$nav-pills-link-active-bg: $primary;

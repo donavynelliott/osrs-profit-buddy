@@ -16,24 +16,29 @@
 
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>    
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
-    <main class="d-flex flex-nowrap">
-        @include('layouts.sidebar')
+<body class="sb-nav-fixed">
+    @include('layouts.navbar')
 
-        <div class="container-fluid navbar-container">
-            @include('layouts.navbar')
-            <div class="container-fluid">
-                <h2 class="pb-2 border-bottom pt-2">@yield('title')</h2>
-                @yield('content')
-            </div>
+    <div id="layoutSidenav">
+        @include('layouts.sidebar-nav')
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mb-3 mt-4">@yield('title')</h1>
+                    @yield('content')
+                </div>
+            </main>
         </div>
-    </main>
+    </div>
 </body>
 
 </html>
