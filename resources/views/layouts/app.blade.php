@@ -18,18 +18,26 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
     <!-- Styles -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
-    <div class="d-flex flex-column vh-100">
-        @include('layouts.navbar')
+<body class="sb-nav-fixed">
+    @include('layouts.navbar')
 
-        <main class="container mt-5 pt-4">
-            <h1 class="text-center">@yield('title')</h1>
-            @yield('content')
-        </main>
+    <div id="layoutSidenav">
+        @include('layouts.sidebar-nav')
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4 mt-4">
+                    <h1 class="mb-3">@yield('title')</h1>
+                    @yield('content')
+                </div>
+            </main>
+        </div>
     </div>
 </body>
 

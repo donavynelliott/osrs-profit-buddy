@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'RS Profit Buddy')
+@section('title', 'Profit Calculators')
 
 @section('content')
 <div class="card bg-dark" style="width: 20rem;">
