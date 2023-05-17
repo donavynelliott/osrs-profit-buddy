@@ -14,6 +14,11 @@
             <a href="{{ route('login') }}">
                 <button type="button" class="btn btn-outline-primary btn-lg px-4 gap-3">Login</button>
             </a>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <!-- Add a button for demo login -->
+                <button type="submit" name="demo_login" class="btn btn-outline-primary btn-lg px-4 gap-3">Demo Login</button>
+            </form>
             <a href="{{ route('register') }}">
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4 gap-3">Register</button>
             </a>

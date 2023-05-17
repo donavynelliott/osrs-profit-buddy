@@ -42,4 +42,10 @@
         </a>
     </div>
 </form>
+
+<form method="POST" action="{{ route('login') }}" class="mt-4">
+    @csrf
+    <!-- Add a button for demo login -->
+    <button type="submit" name="demo_login" class="btn btn-primary">Demo Login</button>
+</form>
 @endsection

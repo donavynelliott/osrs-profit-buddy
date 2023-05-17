@@ -16,6 +16,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // If user clicked demo login button then use the demo login method
+        if ($request->has('demo_login')) {
+            return $this->demoLogin();
+        }
+        
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -60,6 +65,33 @@ class LoginController extends Controller
         ]);
 
         Auth::login($user);
+
+        return redirect('/');
+    }
+
+    /**
+     * Logs in a demo user and redirects to the home page
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function demoLogin()
+    {
+        // Find or create the demo account
+        $demoEmail = 'demo@example.com';
+        $demoPassword = 'demopassword';
+
+        $demoUser = User::where('email', $demoEmail)->first();
+
+        if (!$demoUser) {
+            $demoUser = User::create([
+                'name' => 'Demo User',
+                'email' => $demoEmail,
+                'password' => Hash::make($demoPassword),
+            ]);
+        }
+
+        // Log in the demo user
+        Auth::login($demoUser);
 
         return redirect('/');
     }
