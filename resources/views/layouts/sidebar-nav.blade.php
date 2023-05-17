@@ -18,18 +18,27 @@
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Main</div>
                 <a class="nav-link" href="{{ route('home') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                     Home
                 </a>
                 <div class="sb-sidenav-menu-heading">Profit</div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#marginCollapseLayouts" aria-expanded="false" aria-controls="marginCollapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-simple"></i></div>
+                    Margins
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="marginCollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('flip-finder') }}">Highest Profit Margins</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#calcCollapseLayouts" aria-expanded="false" aria-controls="calcCollapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
                     Calculators
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="calcCollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('flip-finder') }}">Highest Profit Margins</a>
                         <a class="nav-link" href="{{ route('profit-calcs') }}">Item Sets</a>
                     </nav>
                 </div>
