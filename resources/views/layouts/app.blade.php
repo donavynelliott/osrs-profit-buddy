@@ -32,8 +32,8 @@
         @include('layouts.sidebar-nav')
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4 mt-4">
-                    <h1 class="mb-3">@yield('title')</h1>
+                <div class="container-fluid px-4">
+                    <h1 class="mb-3 mt-4">@yield('title')</h1>
                     @yield('content')
                 </div>
             </main>
