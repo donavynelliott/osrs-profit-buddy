@@ -30,7 +30,7 @@
 ]; ?>
 
 <div class="row">
-    <div class="col-xl-6">
+    <div class="col-xl-6 mb-3">
         <!-- Display an input where a play may enter their username -->
         <div class="mb-3">
             <label for="username">Username</label>
@@ -39,6 +39,29 @@
         <div class="mb-3">
             <button type="button" class="btn btn-primary" id="fetch-stats">Fetch Stats</button>
         </div>
+        <!-- Display a card like the ones below that shows the currently selected skill -->
+        <h6>Currently Selected Skill</h6>
+        <div class="card bg-light" id="selected-skill-card">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <!-- Display the image and level value to the left -->
+                <div>
+                    <img src="{{ asset('images/skills/attack.png') }}" class="img-fluid selected-card-img">
+                    <span class="level-value">0</span>
+                </div>
+
+                <!-- Display arrow pointing right in the middle of the card -->
+                <span>
+                    <i class="fas fa-arrow-right"></i>
+                </span>
+
+                <!-- Display the image and level value to the right -->
+                <div>
+                    <img src="{{ asset('images/skills/attack.png') }}" class="img-fluid selected-card-img">
+                    <span class="level-goal-value">0</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -49,7 +72,7 @@
 
                 @foreach ($skills as $skill)
                 <div class="skill-col col-3 mb-4">
-                    <div class="card bg-light">
+                    <div class="card bg-light" id="{{ $skill }}">
                         <div class="card-body align-items-center">
                             <img src="{{ asset('images/skills/' . $skill . '.png') }}" alt="{{ $skill }} icon" class="img-fluid">
                             <span class="level-value">0</span>
@@ -62,7 +85,7 @@
                 <div class="skill-col col-4 col-md-3 mb-4">
                     <div class="card bg-light">
                         <div class="card-body align-items-center">
-                            Total Level: 
+                            Total Level:
                             <span class="level-value">0</span>
                         </div>
                     </div>
@@ -74,76 +97,8 @@
 
 </div>
 
-
-<script>
-    // Get the players hiscores from the API
-    function getPlayerHiscores(playerName) {
-        // Create a new promise
-        return new Promise((resolve, reject) => {
-            // Create a new XMLHttpRequest instance
-            const xhr = new XMLHttpRequest();
-
-            // Set the request URL
-            const url = '/api/osrs/hiscores/' + playerName;
-
-            // Open a new GET request
-            xhr.open('GET', url);
-
-            // Set the response type
-            xhr.responseType = 'json';
-
-            // Set the onload function
-            xhr.onload = () => {
-                // Check if the status code is 200
-                if (xhr.status === 200) {
-                    // Resolve the promise with the response
-                    resolve(xhr.response);
-                } else {
-                    // Reject the promise with the status text
-                    reject(xhr.statusText);
-                }
-            };
-
-            // Send the request
-            xhr.send();
-        });
-    }
-
-    // Get the username input
-    const usernameInput = document.getElementById('username');
-
-    // Get the fetch stats button
-    const fetchStatsButton = document.getElementById('fetch-stats');
-
-    // Add an event listener for when the button is clicked
-    fetchStatsButton.addEventListener('click', () => {
-        // Get the username from the input
-        const username = usernameInput.value;
-
-        // Get the players hiscores
-        getPlayerHiscores(username)
-            .then((data) => {
-                // Loop through each skill
-                data.forEach((skill, index) => {
-                    // Get the skill card
-                    const skillCard = document.getElementsByClassName('skill-col')[index].firstElementChild;
-
-                    // Remove existing badges
-                    skillCard.querySelectorAll('.badge').forEach((badge) => {
-                        badge.remove();
-                    });
-
-                    // Replace the value in level-value with the new level
-                    skillCard.querySelector('.level-value').innerHTML = skill[1];
-                });
-            })
-            .catch((error) => {
-                // Log the error
-                console.log(error);
-            });
-    });
-</script>
-
+<!-- Include the vite resource xp-calc.js -->
+@vite('resources/js/xp-calc.js')
 
 <style>
     .card-body.align-items-center {
@@ -161,11 +116,23 @@
         max-width: 48px;
     }
 
-    .skill-col .card {}
+    .skill-col .card:hover {
+        background-color: #e9ecef !important;
+        cursor: pointer;
+    }
+
+    .skill-col .active {
+        background-color: #e9ecef !important;
+    }
 
     .level-value {
         margin-left: 3px;
         font-size: 1.5rem;
+    }
+
+    #selected-skill-card {
+        max-width: 20rem;
+        ;
     }
 </style>
 @endsection
