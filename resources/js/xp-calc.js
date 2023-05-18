@@ -58,10 +58,58 @@ document.addEventListener('alpine:init', () => {
             document.querySelectorAll('.selected-card-img').forEach((selectedSkillImg) => {
                 selectedSkillImg.src = this.currentlySelectedSkillCard.querySelector('img').src
             })
+            const skillIndex = this.skills !== null ? this.currentlySelectedSkillCard.id.replace('skill-', '') : 0;
+            if (this.skills !== null) 
+            {
+                console.log("Current Skill in table: ", this.skills[skillIndex])
+                this.currentLevel = this.skills[skillIndex][1]
+                this.currentXP = this.skills[skillIndex][2]
+            }
+            // Set the level goal to the current level + 1
+            document.querySelector('#level-goal').value = Math.min(parseInt(this.currentlySelectedSkillCard.querySelector('.level-value').innerHTML) + 1, 99)
+
+            // Set the current experience
+            document.querySelector('#current-experience').innerHTML = parseInt(this.currentXP).toLocaleString()
+
+            this.calculateExperience()
+        },
+        calculateExperience: function() {
+            // Calculate the experience needed to reach the goal level
+            const currentExperience = this.currentXP;
+            const goalExperience = this.calculateTotalExperience(document.querySelector('#level-goal').value);
+
+            const experienceToGoalLevel = goalExperience - currentExperience;
+
+            // Set the experience to goal
+            this.setExperienceToGoal(experienceToGoalLevel);
+        },
+        calculateTotalExperience(level) {
+            var xp = 0;
+    
+            for (var i = 1; i < level; i++)
+                xp += Math.floor(i + 300 * Math.pow(2, i / 7));
+    
+            return Math.floor(xp / 4);
+        },
+        setExperienceToGoal(exp) {
+            if (exp < 0) {
+                document.querySelector('#experience-to-goal').innerHTML = Math.abs(exp).toLocaleString();
+                document.querySelector('label[for="experience-to-goal"]').innerHTML = "Experience over Goal";
+            } else {
+                document.querySelector('#experience-to-goal').innerHTML = exp.toLocaleString();
+                document.querySelector('label[for="experience-to-goal"]').innerHTML = "Experience to Goal";
+            }
         },
         skills: null,
         currentlySelectedSkillCard: null,
+        currentLevel: 0,
+        currentXP: 0,
     });
+
+    // Calculate the experience needed to reach the goal level when the level goal is changed
+    document.querySelector('#level-goal').addEventListener('change', () => {
+        window.Alpine.store('xpCalc').calculateExperience();
+    })
 })
 
 // Add an event listener for when the button is clicked

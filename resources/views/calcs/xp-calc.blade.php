@@ -54,12 +54,20 @@
                     <i class="fas fa-arrow-right"></i>
                 </span>
 
-                <!-- Display the image and level value to the right -->
+                <!-- Display the level value to the right -->
                 <div>
-                    <img src="{{ asset('images/skills/attack.png') }}" class="img-fluid selected-card-img">
-                    <span class="level-goal-value">0</span>
+                    <input type="number" class="form-control" id="level-goal" name="level-goal" min="0" max="99" value="0">
                 </div>
             </div>
+        </div>
+
+        <div class="mt-3">
+            <p>
+                <label for="current-experience">Current Experience</label>
+                <strong id="current-experience">0</strong> |
+                <label for="experience-to-goal">Experience To Goal</label>
+                <strong id="experience-to-goal">0</strong>
+            </p>
         </div>
 
     </div>
@@ -70,12 +78,13 @@
         <div class="container-fluid">
             <div class="row">
 
-                @foreach ($skills as $skill)
+                @foreach ($skills as $index => $skill)
                 <div class="skill-col col-3 mb-4">
-                    <div class="card bg-light" id="{{ $skill }}">
+                    <div class="card bg-light" id="skill-{{ $index }}">
                         <div class="card-body align-items-center">
                             <img src="{{ asset('images/skills/' . $skill . '.png') }}" alt="{{ $skill }} icon" class="img-fluid">
-                            <span class="level-value">0</span>
+                            <!-- Set the default value to 1 unless the skill is hitpoints, in which case 10 -->
+                            <span class="level-value">{{ $skill == 'hitpoints' ? 10 : 1 }}</span>
                         </div>
                     </div>
                 </div>
@@ -86,7 +95,8 @@
                     <div class="card bg-light">
                         <div class="card-body align-items-center">
                             Total Level:
-                            <span class="level-value">0</span>
+                            <!-- Set to default total level in osrs -->
+                            <span class="level-value">32</span>
                         </div>
                     </div>
                 </div>
