@@ -41,6 +41,12 @@ Route::middleware('auth')->group(function() {
         })->name('profit-calcs');
         Route::get('/item-sets', [ItemSetController::class, 'index'])->name('profit-calcs.item-sets');
     });
+
+    Route::prefix('calcs')->group(function () {
+        Route::get('/xp-calc', function () {
+            return view('calcs.xp-calc');
+        })->name('calcs.xp-calc');
+    });
 });
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
